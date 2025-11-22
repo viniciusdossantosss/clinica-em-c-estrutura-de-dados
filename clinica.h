@@ -3,14 +3,14 @@
 
 /* ========================================
    TRABALHO SEMESTRAL - ESTRUTURA DE DADOS
-   Sistema de Atendimento em uma Clínica
+   Sistema de Atendimento em uma Clinica
    ======================================== */
 
-/* Definição de constantes */
+/* Definicao de constantes */
 #define MAX_NOME 100
 #define MAX_CPF 15
 
-/* Enumeração para prioridade do paciente */
+/* Enumeracao para prioridade do paciente */
 typedef enum {
     NORMAL = 0,
     URGENTE = 1
@@ -27,13 +27,15 @@ typedef struct Paciente {
     int idade;
     char cpf[MAX_CPF];
     Prioridade prioridade;
-    struct Paciente *proximo;  // Ponteiro para o próximo paciente na lista
+    struct Paciente *proximo;  // Ponteiro para o proximo paciente na lista
+    struct Paciente *prev;	   // Ponteiro para o paciente anterior na lista
 } Paciente;
 
 /* Estrutura para a lista encadeada de pacientes */
 typedef struct {
-    Paciente *inicio;  // Ponteiro para o primeiro paciente
-    int total;         // Total de pacientes cadastrados
+    Paciente *inicio;   // Ponteiro para o primeiro paciente
+    Paciente *fim;		// Ponteiro para o primeiro paciente
+    int total;          // Total de pacientes cadastrados
 } ListaPacientes;
 
 /* ========================================
@@ -41,65 +43,68 @@ typedef struct {
    Fila de Atendimento
    ======================================== */
 
-/* Nó da fila de atendimento */
+/* No da fila de atendimento */
 typedef struct NoFila {
     Paciente *paciente;      // Ponteiro para o paciente
-    struct NoFila *proximo;  // Próximo na fila
+    struct NoFila *proximo;  // Proximo na fila
 } NoFila;
 
 /* Estrutura da fila de atendimento */
 typedef struct {
     NoFila *inicio;  // Primeiro da fila
-    NoFila *fim;     // Último da fila
+    NoFila *fim;     // Ultimo da fila
     int tamanho;     // Quantidade de pacientes na fila
 } FilaAtendimento;
 
 /* ========================================
    ESTRUTURA 3: PILHA
-   Histórico de Atendimentos
+   Historico de Atendimentos
    ======================================== */
 
-/* Nó da pilha de histórico */
+/* No da pilha de historico */
 typedef struct NoPilha {
     Paciente *paciente;      // Ponteiro para o paciente atendido
-    struct NoPilha *proximo; // Próximo na pilha
+    struct NoPilha *proximo; // Proximo na pilha
 } NoPilha;
 
-/* Estrutura da pilha de histórico */
+/* Estrutura da pilha de historico */
 typedef struct {
     NoPilha *topo;   // Topo da pilha
-    int tamanho;     // Quantidade de atendimentos no histórico
+    int tamanho;     // Quantidade de atendimentos no historico
 } PilhaHistorico;
 
 /* ========================================
-   PROTÓTIPOS DAS FUNÇÕES
+   PROTOTIPOS DAS FUNCOES
    ======================================== */
 
-/* Funções da Lista Encadeada (Cadastro) */
+/* Funcoes da Lista Encadeada (Cadastro) */
 ListaPacientes* criarListaPacientes();
 void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Prioridade prioridade);
 void listarPacientes(ListaPacientes *lista);
 Paciente* buscarPacientePorCPF(ListaPacientes *lista, char *cpf);
 void liberarListaPacientes(ListaPacientes *lista);
 
-/* Funções da Fila de Atendimento */
+/* Funcoes da Fila de Atendimento */
 FilaAtendimento* criarFilaAtendimento();
 void adicionarNaFila(FilaAtendimento *fila, Paciente *paciente);
 Paciente* chamarProximoPaciente(FilaAtendimento *fila);
+int RemoverPacientePorCPF(ListaPacientes *lista, char *cpf);
 void visualizarFila(FilaAtendimento *fila);
 void liberarFila(FilaAtendimento *fila);
 
-/* Funções da Pilha de Histórico */
+/* Funcoes da Pilha de Historico */
 PilhaHistorico* criarPilhaHistorico();
 void adicionarNoHistorico(PilhaHistorico *pilha, Paciente *paciente);
 void visualizarHistorico(PilhaHistorico *pilha);
 Paciente* desfazerUltimoAtendimento(PilhaHistorico *pilha);
 void liberarPilha(PilhaHistorico *pilha);
 
-/* Funções auxiliares */
+/* Funcoes auxiliares */
 void limparBuffer();
 void pausar();
 void limparTela();
 char* obterPrioridadeTexto(Prioridade p);
+int stringVaziaOuEspacos(const char *s); 
 
 #endif
+
