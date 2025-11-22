@@ -1,0 +1,42 @@
+# Compiled object files
+*.o
+*.obj
+
+# Compiled binary executables
+*.exe
+*.out
+*.elf
+
+# Precompiled headers
+*.gch
+*.pch
+
+# Libraries
+*.a
+*.lib
+*.dll
+*.so
+*.dylib
+
+# Debug / release folders (common)
+debug/
+release/
+bin/
+build/
+
+# CodeBlocks files
+*.cbp
+*.layout
+*.depend
+
+# VSCode settings
+.vscode/
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+
+# Backup / temp files
+*.log
+*.tmp
+*~
