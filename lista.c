@@ -41,13 +41,23 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
         return;
     }
     
+        // validacao de string vazia
+    if (stringVaziaOuEspacos(nome)) {
+	    printf("Erro: nome invalido!\n");
+	    return;
+	}
+	if (stringVaziaOuEspacos(cpf)) {
+	    printf("Erro: CPF invalido!\n");
+	    return;
+	}
+
     // Verifica se o CPF ja esta cadastrado
     if (buscarPacientePorCPF(lista, cpf) != NULL) {
         printf("Erro: Paciente com CPF %s ja cadastrado!\n", cpf);
         return;
     }
     
-     // Aloca memória para o novo paciente
+    // Aloca memoria para o novo paciente
     Paciente *novo = (Paciente*)malloc(sizeof(Paciente));
     
     if (novo == NULL) {
@@ -57,7 +67,7 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
     
     // Copia os dados para o novo paciente
     strncpy(novo->nome, nome, MAX_NOME - 1);
-    novo->nome[MAX_NOME - 1] = '\0';  // Garante terminação da string
+    novo->nome[MAX_NOME - 1] = '\0';  // Garante terminacao da string
     
     novo->idade = idade;
     
@@ -67,12 +77,12 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
     novo->prioridade = prioridade;
     novo->proximo = NULL;
     
-    // Insere no início da lista (inserção mais eficiente)
+    // Insere no inicio da lista (insercao mais eficiente)
     if (lista->inicio == NULL) {
         // Lista vazia
         lista->inicio = novo;
     } else {
-        // Insere no início
+        // Insere no inicio
         novo->proximo = lista->inicio;
         lista->inicio = novo;
     }
@@ -83,7 +93,7 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
 
 /**
  * Lista todos os pacientes cadastrados
- * Parâmetro:
+ * Parametro:
  *   - lista: ponteiro para a lista de pacientes
  */
 void listarPacientes(ListaPacientes *lista) {
@@ -103,7 +113,7 @@ void listarPacientes(ListaPacientes *lista) {
     Paciente *atual = lista->inicio;
     int contador = 1;
     
-    // Percorre a lista do início ao fim
+    // Percorre a lista do inicio ao fim
     while (atual != NULL) {
         printf("--- Paciente %d ---\n", contador);
         printf("Nome: %s\n", atual->nome);
@@ -121,10 +131,10 @@ void listarPacientes(ListaPacientes *lista) {
 
 /**
  * Busca um paciente pelo CPF
- * Parâmetros:
+ * Parametros:
  *   - lista: ponteiro para a lista de pacientes
  *   - cpf: CPF do paciente a ser buscado
- * Retorna: ponteiro para o paciente encontrado ou NULL se não encontrado
+ * Retorna: ponteiro para o paciente encontrado ou NULL se nao encontrado
  */
 Paciente* buscarPacientePorCPF(ListaPacientes *lista, char *cpf) {
     if (lista == NULL || cpf == NULL) {
@@ -141,12 +151,12 @@ Paciente* buscarPacientePorCPF(ListaPacientes *lista, char *cpf) {
         atual = atual->proximo;
     }
     
-    return NULL;  // Não encontrou
+    return NULL;  // Nao encontrou
 }
 
 /**
- * Libera toda a memória alocada para a lista de pacientes
- * Parâmetro:
+ * Libera toda a memoria alocada para a lista de pacientes
+ * Parametro:
  *   - lista: ponteiro para a lista de pacientes
  */
 void liberarListaPacientes(ListaPacientes *lista) {
@@ -157,7 +167,7 @@ void liberarListaPacientes(ListaPacientes *lista) {
     Paciente *atual = lista->inicio;
     Paciente *proximo;
     
-    // Percorre a lista liberando cada nó
+    // Percorre a lista liberando cada no
     while (atual != NULL) {
         proximo = atual->proximo;
         free(atual);
