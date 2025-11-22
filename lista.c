@@ -21,6 +21,7 @@ ListaPacientes* criarListaPacientes() {
     }
     
     lista->inicio = NULL;
+    lista->fim = NULL;
     lista->total = 0;
     
     return lista;
@@ -73,17 +74,19 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
     
     strncpy(novo->cpf, cpf, MAX_CPF - 1);
     novo->cpf[MAX_CPF - 1] = '\0';
-    
     novo->prioridade = prioridade;
-    novo->proximo = NULL;
+    
+    novo->proximo = lista->inicio;
+    novo->prev = NULL;
     
     // Insere no inicio da lista (insercao mais eficiente)
     if (lista->inicio == NULL) {
         // Lista vazia
         lista->inicio = novo;
+        lista->fim = novo;
     } else {
-        // Insere no inicio
-        novo->proximo = lista->inicio;
+        /* insere no inicio */
+        lista->inicio->prev = novo;
         lista->inicio = novo;
     }
     
