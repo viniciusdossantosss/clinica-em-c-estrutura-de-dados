@@ -4,7 +4,7 @@
 #include "clinica.h"
 
 /* ========================================
-   IMPLEMENTAÃ‡ÃƒO: LISTA ENCADEADA
+   IMPLEMENTACAO: LISTA ENCADEADA
    Cadastro de Pacientes
    ======================================== */
 
@@ -28,7 +28,7 @@ ListaPacientes* criarListaPacientes() {
 
 /**
  * Insere um novo paciente na lista encadeada
- * ParÃ¢metros:
+ * Parametros:
  *   - lista: ponteiro para a lista de pacientes
  *   - nome: nome do paciente
  *   - idade: idade do paciente
@@ -41,13 +41,13 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
         return;
     }
     
-    // Verifica se o CPF jÃ¡ estÃ¡ cadastrado
+    // Verifica se o CPF ja esta cadastrado
     if (buscarPacientePorCPF(lista, cpf) != NULL) {
         printf("Erro: Paciente com CPF %s ja cadastrado!\n", cpf);
         return;
     }
     
-    // Aloca memÃ³ria para o novo paciente
+     // Aloca memória para o novo paciente
     Paciente *novo = (Paciente*)malloc(sizeof(Paciente));
     
     if (novo == NULL) {
@@ -57,7 +57,7 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
     
     // Copia os dados para o novo paciente
     strncpy(novo->nome, nome, MAX_NOME - 1);
-    novo->nome[MAX_NOME - 1] = '\0';  // Garante terminaÃ§Ã£o da string
+    novo->nome[MAX_NOME - 1] = '\0';  // Garante terminação da string
     
     novo->idade = idade;
     
@@ -67,12 +67,12 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
     novo->prioridade = prioridade;
     novo->proximo = NULL;
     
-    // Insere no inÃ­cio da lista (inserÃ§Ã£o mais eficiente)
+    // Insere no início da lista (inserção mais eficiente)
     if (lista->inicio == NULL) {
         // Lista vazia
         lista->inicio = novo;
     } else {
-        // Insere no inÃ­cio
+        // Insere no início
         novo->proximo = lista->inicio;
         lista->inicio = novo;
     }
@@ -83,7 +83,7 @@ void inserirPaciente(ListaPacientes *lista, char *nome, int idade, char *cpf, Pr
 
 /**
  * Lista todos os pacientes cadastrados
- * ParÃ¢metro:
+ * Parâmetro:
  *   - lista: ponteiro para a lista de pacientes
  */
 void listarPacientes(ListaPacientes *lista) {
@@ -103,7 +103,7 @@ void listarPacientes(ListaPacientes *lista) {
     Paciente *atual = lista->inicio;
     int contador = 1;
     
-    // Percorre a lista do inÃ­cio ao fim
+    // Percorre a lista do início ao fim
     while (atual != NULL) {
         printf("--- Paciente %d ---\n", contador);
         printf("Nome: %s\n", atual->nome);
@@ -121,10 +121,10 @@ void listarPacientes(ListaPacientes *lista) {
 
 /**
  * Busca um paciente pelo CPF
- * ParÃ¢metros:
+ * Parâmetros:
  *   - lista: ponteiro para a lista de pacientes
  *   - cpf: CPF do paciente a ser buscado
- * Retorna: ponteiro para o paciente encontrado ou NULL se nÃ£o encontrado
+ * Retorna: ponteiro para o paciente encontrado ou NULL se não encontrado
  */
 Paciente* buscarPacientePorCPF(ListaPacientes *lista, char *cpf) {
     if (lista == NULL || cpf == NULL) {
@@ -141,12 +141,12 @@ Paciente* buscarPacientePorCPF(ListaPacientes *lista, char *cpf) {
         atual = atual->proximo;
     }
     
-    return NULL;  // NÃ£o encontrou
+    return NULL;  // Não encontrou
 }
 
 /**
- * Libera toda a memÃ³ria alocada para a lista de pacientes
- * ParÃ¢metro:
+ * Libera toda a memória alocada para a lista de pacientes
+ * Parâmetro:
  *   - lista: ponteiro para a lista de pacientes
  */
 void liberarListaPacientes(ListaPacientes *lista) {
@@ -157,7 +157,7 @@ void liberarListaPacientes(ListaPacientes *lista) {
     Paciente *atual = lista->inicio;
     Paciente *proximo;
     
-    // Percorre a lista liberando cada nÃ³
+    // Percorre a lista liberando cada nó
     while (atual != NULL) {
         proximo = atual->proximo;
         free(atual);
@@ -166,3 +166,4 @@ void liberarListaPacientes(ListaPacientes *lista) {
     
     free(lista);
 }
+

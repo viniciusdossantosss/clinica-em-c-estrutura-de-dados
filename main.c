@@ -5,7 +5,7 @@
 
 /* ========================================
    PROGRAMA PRINCIPAL
-   Sistema de Atendimento em Clínica
+   Sistema de Atendimento em Cl�nica
    ======================================== */
 
 /**
@@ -13,36 +13,36 @@
  */
 void exibirMenu() {
     printf("\n");
-    printf("╔════════════════════════════════════════════════╗\n");
-    printf("║   SISTEMA DE ATENDIMENTO - CLINICA MEDICA      ║\n");
-    printf("╚════════════════════════════════════════════════╝\n");
+    printf("+------------------------------------------------+\n");
+    printf("�   SISTEMA DE ATENDIMENTO - CLINICA MEDICA      �\n");
+    printf("+------------------------------------------------+\n");
     printf("\n");
-    printf("┌─ CADASTRO DE PACIENTES ────────────────────────┐\n");
-    printf("│ 1. Cadastrar novo paciente                     │\n");
-    printf("│ 2. Listar todos os pacientes                   │\n");
-    printf("│ 3. Buscar paciente por CPF                     │\n");
-    printf("└─────────────────────────────────────────────────┘\n");
+    printf("+- CADASTRO DE PACIENTES ------------------------+\n");
+    printf("� 1. Cadastrar novo paciente                     �\n");
+    printf("� 2. Listar todos os pacientes                   �\n");
+    printf("� 3. Buscar paciente por CPF                     �\n");
+    printf("+------------------------------------------------+\n");
     printf("\n");
-    printf("┌─ FILA DE ATENDIMENTO ──────────────────────────┐\n");
-    printf("│ 4. Adicionar paciente na fila                  │\n");
-    printf("│ 5. Chamar proximo paciente                     │\n");
-    printf("│ 6. Visualizar fila de atendimento              │\n");
-    printf("└─────────────────────────────────────────────────┘\n");
+    printf("+- FILA DE ATENDIMENTO --------------------------+\n");
+    printf("� 4. Adicionar paciente na fila                  �\n");
+    printf("� 5. Chamar proximo paciente                     �\n");
+    printf("� 6. Visualizar fila de atendimento              �\n");
+    printf("+------------------------------------------------+\n");
     printf("\n");
-    printf("┌─ HISTORICO DE ATENDIMENTOS ────────────────────┐\n");
-    printf("│ 7. Visualizar historico                        │\n");
-    printf("│ 8. Desfazer ultimo atendimento                 │\n");
-    printf("└─────────────────────────────────────────────────┘\n");
+    printf("+- HISTORICO DE ATENDIMENTOS --------------------+\n");
+    printf("� 7. Visualizar historico                        �\n");
+    printf("� 8. Desfazer ultimo atendimento                 �\n");
+    printf("+------------------------------------------------+\n");
     printf("\n");
-    printf("┌─ SISTEMA ──────────────────────────────────────┐\n");
-    printf("│ 0. Sair                                        │\n");
-    printf("└─────────────────────────────────────────────────┘\n");
+    printf("+- SISTEMA --------------------------------------+\n");
+    printf("� 0. Sair                                        �\n");
+    printf("+------------------------------------------------+\n");
     printf("\n");
     printf("Escolha uma opcao: ");
 }
 
 /**
- * Função principal do programa
+ * Fun��o principal do programa
  */
 int main() {
     // Inicializa as estruturas de dados
@@ -153,12 +153,12 @@ int main() {
                 pausar();
                 break;
                 
-            case 5:  // Chamar próximo paciente
+            case 5:  // Chamar pr�ximo paciente
                 printf("\n=== CHAMAR PROXIMO PACIENTE ===\n");
                 pacienteEncontrado = chamarProximoPaciente(filaAtendimento);
                 
                 if (pacienteEncontrado != NULL) {
-                    // Adiciona o paciente atendido no histórico
+                    // Adiciona o paciente atendido no hist�rico
                     adicionarNoHistorico(pilhaHistorico, pacienteEncontrado);
                     printf("\nAtendimento concluido!\n");
                 }
@@ -170,12 +170,12 @@ int main() {
                 pausar();
                 break;
                 
-            case 7:  // Visualizar histórico
+            case 7:  // Visualizar hist�rico
                 visualizarHistorico(pilhaHistorico);
                 pausar();
                 break;
                 
-            case 8:  // Desfazer último atendimento
+            case 8:  // Desfazer �ltimo atendimento
                 printf("\n=== DESFAZER ULTIMO ATENDIMENTO ===\n");
                 pacienteEncontrado = desfazerUltimoAtendimento(pilhaHistorico);
                 
@@ -195,7 +195,7 @@ int main() {
                 printf("\n=== ENCERRANDO SISTEMA ===\n");
                 printf("Liberando recursos...\n");
                 
-                // Libera toda a memória alocada
+                // Libera toda a mem�ria alocada
                 liberarListaPacientes(listaPacientes);
                 liberarFila(filaAtendimento);
                 liberarPilha(pilhaHistorico);

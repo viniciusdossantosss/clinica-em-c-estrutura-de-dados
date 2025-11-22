@@ -3,7 +3,7 @@
 #include "clinica.h"
 
 /* ========================================
-   IMPLEMENTAÃ‡ÃƒO: FILA
+   IMPLEMENTACAO: FILA
    Fila de Atendimento
    ======================================== */
 
@@ -29,7 +29,7 @@ FilaAtendimento* criarFilaAtendimento() {
 /**
  * Adiciona um paciente na fila de atendimento
  * A fila respeita a ordem de chegada (FIFO - First In First Out)
- * ParÃ¢metros:
+ * Parametros:
  *   - fila: ponteiro para a fila de atendimento
  *   - paciente: ponteiro para o paciente a ser adicionado
  */
@@ -44,7 +44,7 @@ void adicionarNaFila(FilaAtendimento *fila, Paciente *paciente) {
         return;
     }
     
-    // Aloca memÃ³ria para o novo nÃ³ da fila
+    // Aloca memoria para o novo no da fila
     NoFila *novo = (NoFila*)malloc(sizeof(NoFila));
     
     if (novo == NULL) {
@@ -55,7 +55,7 @@ void adicionarNaFila(FilaAtendimento *fila, Paciente *paciente) {
     novo->paciente = paciente;
     novo->proximo = NULL;
     
-    // Se a fila estÃ¡ vazia
+    // Se a fila esta vazia
     if (fila->fim == NULL) {
         fila->inicio = novo;
         fila->fim = novo;
@@ -70,8 +70,8 @@ void adicionarNaFila(FilaAtendimento *fila, Paciente *paciente) {
 }
 
 /**
- * Chama o prÃ³ximo paciente da fila (remove do inÃ­cio)
- * ParÃ¢metro:
+ * Chama o próximo paciente da fila (remove do início)
+ * Parâmetro:
  *   - fila: ponteiro para a fila de atendimento
  * Retorna: ponteiro para o paciente chamado ou NULL se a fila estiver vazia
  */
@@ -86,7 +86,7 @@ Paciente* chamarProximoPaciente(FilaAtendimento *fila) {
         return NULL;
     }
     
-    // Remove o primeiro nÃ³ da fila
+    // Remove o primeiro nó da fila
     NoFila *removido = fila->inicio;
     Paciente *paciente = removido->paciente;
     
@@ -99,7 +99,7 @@ Paciente* chamarProximoPaciente(FilaAtendimento *fila) {
     
     fila->tamanho--;
     
-    // Libera o nÃ³ (mas nÃ£o o paciente, pois ele serÃ¡ usado)
+    // Libera o nó (mas não o paciente, pois ele será usado)
     free(removido);
     
     printf("\nChamando paciente: %s\n", paciente->nome);
@@ -111,7 +111,7 @@ Paciente* chamarProximoPaciente(FilaAtendimento *fila) {
 
 /**
  * Visualiza todos os pacientes na fila de atendimento
- * ParÃ¢metro:
+ * Parâmetro:
  *   - fila: ponteiro para a fila de atendimento
  */
 void visualizarFila(FilaAtendimento *fila) {
@@ -131,7 +131,7 @@ void visualizarFila(FilaAtendimento *fila) {
     NoFila *atual = fila->inicio;
     int posicao = 1;
     
-    // Percorre a fila do inÃ­cio ao fim
+    // Percorre a fila do início ao fim
     while (atual != NULL) {
         printf("Posicao %d:\n", posicao);
         printf("  Nome: %s\n", atual->paciente->nome);
@@ -148,8 +148,8 @@ void visualizarFila(FilaAtendimento *fila) {
 }
 
 /**
- * Libera toda a memÃ³ria alocada para a fila
- * ParÃ¢metro:
+ * Libera toda a memória alocada para a fila
+ * Parâmetro:
  *   - fila: ponteiro para a fila de atendimento
  */
 void liberarFila(FilaAtendimento *fila) {
@@ -160,7 +160,7 @@ void liberarFila(FilaAtendimento *fila) {
     NoFila *atual = fila->inicio;
     NoFila *proximo;
     
-    // Percorre a fila liberando cada nÃ³
+    // Percorre a fila liberando cada nó
     while (atual != NULL) {
         proximo = atual->proximo;
         free(atual);

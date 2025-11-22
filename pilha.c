@@ -3,12 +3,12 @@
 #include "clinica.h"
 
 /* ========================================
-   IMPLEMENTAÇÃO: PILHA
-   Histórico de Atendimentos
+   IMPLEMENTACAO: PILHA
+   Historico de Atendimentos
    ======================================== */
 
 /**
- * Cria e inicializa uma nova pilha de histórico
+ * Cria e inicializa uma nova pilha de historico
  * Retorna: ponteiro para a pilha criada
  */
 PilhaHistorico* criarPilhaHistorico() {
@@ -26,10 +26,10 @@ PilhaHistorico* criarPilhaHistorico() {
 }
 
 /**
- * Adiciona um paciente no histórico de atendimentos (topo da pilha)
- * A pilha segue o princípio LIFO (Last In First Out)
- * Parâmetros:
- *   - pilha: ponteiro para a pilha de histórico
+ * Adiciona um paciente no historico de atendimentos (topo da pilha)
+ * A pilha segue o principio LIFO (Last In First Out)
+ * Parametros:
+ *   - pilha: ponteiro para a pilha de historico
  *   - paciente: ponteiro para o paciente atendido
  */
 void adicionarNoHistorico(PilhaHistorico *pilha, Paciente *paciente) {
@@ -43,7 +43,7 @@ void adicionarNoHistorico(PilhaHistorico *pilha, Paciente *paciente) {
         return;
     }
     
-    // Aloca memória para o novo nó da pilha
+    // Aloca memoria para o novo no da pilha
     NoPilha *novo = (NoPilha*)malloc(sizeof(NoPilha));
     
     if (novo == NULL) {
@@ -52,18 +52,18 @@ void adicionarNoHistorico(PilhaHistorico *pilha, Paciente *paciente) {
     }
     
     novo->paciente = paciente;
-    novo->proximo = pilha->topo;  // O novo nó aponta para o antigo topo
+    novo->proximo = pilha->topo;  // O novo no aponta para o antigo topo
     
-    pilha->topo = novo;  // O novo nó se torna o topo
+    pilha->topo = novo;  // O novo no se torna o topo
     pilha->tamanho++;
     
     printf("Atendimento de %s registrado no historico.\n", paciente->nome);
 }
 
 /**
- * Visualiza os últimos atendimentos do histórico
- * Parâmetro:
- *   - pilha: ponteiro para a pilha de histórico
+ * Visualiza os ultimos atendimentos do historico
+ * Parametro:
+ *   - pilha: ponteiro para a pilha de historico
  */
 void visualizarHistorico(PilhaHistorico *pilha) {
     if (pilha == NULL) {
@@ -101,9 +101,9 @@ void visualizarHistorico(PilhaHistorico *pilha) {
 }
 
 /**
- * Desfaz o último atendimento (remove do topo da pilha)
- * Parâmetro:
- *   - pilha: ponteiro para a pilha de histórico
+ * Desfaz o ultimo atendimento (remove do topo da pilha)
+ * Parametro:
+ *   - pilha: ponteiro para a pilha de historico
  * Retorna: ponteiro para o paciente removido ou NULL se a pilha estiver vazia
  */
 Paciente* desfazerUltimoAtendimento(PilhaHistorico *pilha) {
@@ -117,14 +117,14 @@ Paciente* desfazerUltimoAtendimento(PilhaHistorico *pilha) {
         return NULL;
     }
     
-    // Remove o nó do topo
+    // Remove o no do topo
     NoPilha *removido = pilha->topo;
     Paciente *paciente = removido->paciente;
     
-    pilha->topo = pilha->topo->proximo;  // O próximo se torna o novo topo
+    pilha->topo = pilha->topo->proximo;  // O proximo se torna o novo topo
     pilha->tamanho--;
     
-    // Libera o nó (mas não o paciente, pois ele pode ser reutilizado)
+    // Libera o no (mas nao o paciente, pois ele pode ser reutilizado)
     free(removido);
     
     printf("\nUltimo atendimento desfeito:\n");
@@ -134,9 +134,9 @@ Paciente* desfazerUltimoAtendimento(PilhaHistorico *pilha) {
 }
 
 /**
- * Libera toda a memória alocada para a pilha
- * Parâmetro:
- *   - pilha: ponteiro para a pilha de histórico
+ * Libera toda a memoria alocada para a pilha
+ * Parametro:
+ *   - pilha: ponteiro para a pilha de historico
  */
 void liberarPilha(PilhaHistorico *pilha) {
     if (pilha == NULL) {
@@ -146,7 +146,7 @@ void liberarPilha(PilhaHistorico *pilha) {
     NoPilha *atual = pilha->topo;
     NoPilha *proximo;
     
-    // Percorre a pilha liberando cada nó
+    // Percorre a pilha liberando cada no
     while (atual != NULL) {
         proximo = atual->proximo;
         free(atual);
@@ -155,3 +155,4 @@ void liberarPilha(PilhaHistorico *pilha) {
     
     free(pilha);
 }
+

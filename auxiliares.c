@@ -2,12 +2,12 @@
 #include "clinica.h"
 
 /* ========================================
-   FUNÇÕES AUXILIARES
+   FUNCOES AUXILIARES
    ======================================== */
 
 /**
  * Limpa o buffer de entrada (stdin)
- * Útil após usar scanf para evitar problemas com fgets
+ * Util apos usar scanf para evitar problemas com fgets
  */
 void limparBuffer() {
     int c;
@@ -15,7 +15,7 @@ void limparBuffer() {
 }
 
 /**
- * Pausa a execução até o usuário pressionar Enter
+ * Pausa a execucao ate o usuario pressionar Enter
  */
 void pausar() {
     printf("\nPressione ENTER para continuar...");
@@ -24,7 +24,7 @@ void pausar() {
 
 /**
  * Limpa a tela do terminal
- * Usa códigos ANSI compatíveis com a maioria dos terminais
+ * Usa codigos ANSI compativeis com a maioria dos terminais
  */
 void limparTela() {
     printf("\033[2J\033[H");
@@ -32,7 +32,7 @@ void limparTela() {
 
 /**
  * Converte o enum Prioridade para texto
- * Parâmetro:
+ * Parametro:
  *   - p: prioridade a ser convertida
  * Retorna: string com o texto da prioridade
  */
@@ -43,3 +43,4 @@ char* obterPrioridadeTexto(Prioridade p) {
         return "NORMAL";
     }
 }
+
