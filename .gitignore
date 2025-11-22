@@ -40,3 +40,7 @@ Thumbs.db
 *.log
 *.tmp
 *~
+
+
+*.dev
+*.win
